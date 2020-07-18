@@ -25,7 +25,7 @@ yum install puppet-agent git -y
 
 rm -rf /etc/puppetlabs/code
 cd /etc/puppetlabs/
-git clone git@github.com:joseftsch/puppet.git code
+yes yes | git clone git@github.com:joseftsch/puppet.git code
 
 #run puppet
 while true; do
