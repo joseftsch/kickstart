@@ -1,10 +1,10 @@
 #!/bin/bash
-#jtl server install script for Centos 8
+#jtl server install script for Centos 7/8
 servername=$(hostname)
 
 if (( $EUID != 0 )); then
     echo "Please run this script as root"
-    exit 1
+    exit 0
 fi
 
 rm -f /root/.ssh/id_ed25519
