@@ -2,6 +2,11 @@
 #jtl server install script for Centos 8
 servername=$(hostname)
 
+if (( $EUID != 0 )); then
+    echo "Please run this script as root"
+    exit 1
+fi
+
 rm -f /root/.ssh/id_ed25519
 rm -f /root/.ssh/id_ed25519.pub
 ssh-keygen -o -a 200 -t ed25519 -f /root/.ssh/id_ed25519 -q -N "" -C "${servername} github puppet deployment"
