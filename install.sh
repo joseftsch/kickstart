@@ -17,11 +17,21 @@ echo ""
 read -p "Press any key once key added to continue with setup .. " -n1 -s
 echo ""
 
-yum clean all
-#lets not use puppet6 for now ...
-#rpm -Uvh https://yum.puppet.com/puppet6-release-el-8.noarch.rpm
-rpm -Uvh https://yum.puppet.com/puppet5-release-el-8.noarch.rpm
-yum install puppet-agent git -y
+if test -f /etc/debian_version; then
+    echo "Running on Debian ..."
+    cd /tmp
+    curl -O https://apt.puppetlabs.com/puppet7-release-focal.deb
+    apt install ./puppet7-release-focal.deb -y
+    apt install puppet-agent -y
+else
+    echo "Running on RH"
+    yum clean all
+    #lets not use puppet6 for now ...
+    #rpm -Uvh https://yum.puppet.com/puppet6-release-el-8.noarch.rpm
+    rpm -Uvh https://yum.puppet.com/puppet5-release-el-8.noarch.rpm
+    yum install puppet-agent git -y
+fi
+
 
 rm -rf /etc/puppetlabs/code
 cd /etc/puppetlabs/
