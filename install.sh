@@ -22,7 +22,9 @@ if test -f /etc/debian_version; then
     cd /tmp
     curl -O https://apt.puppetlabs.com/puppet7-release-focal.deb
     apt install ./puppet7-release-focal.deb -y
+    apt update -y
     apt install puppet-agent -y
+    apt install git -y
 else
     echo "Running on RH"
     yum clean all
